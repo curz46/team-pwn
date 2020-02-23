@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "team-pwn",
+    "version": "1.0",
+    "description": "Automatically opens OP.GG pages for NSE/NUEL team pages.",
+    "icons": {
+      "48": "opgg-icon-48.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "opgg-icon-16.png"
+        },
+        "default_title": "pwn 'em"
+    },
+    "content_scripts": [
+        {
+          "matches": ["*://*.nse.gg/*"],
+          "js": ["content.js"]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "<all_urls>"
+    ]
+  }
