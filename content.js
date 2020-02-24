@@ -38,7 +38,7 @@ browser.runtime.onMessage.addListener(function (msg, _sender, sendResponse) {
                 const urls = handler();
                 console.log(urls);
                 sendResponse(urls);
-                break;
+                return;
             }
         }
     }
