@@ -1,3 +1,5 @@
+window.browser = (() => window.msBrowser || window.browser || window.chrome)();
+
 const NSE_TEAM_URL    = new RegExp('http(?:s?):\/\/tournaments.nse.gg\/tournaments\/([A-z0-9-]+)\/teams\/([A-z0-9-]+).*');
 const NSE_MATCHES_URL = new RegExp('http(?:s?):\/\/tournaments.nse.gg\/tournaments\/([A-z0-9-]+)\/matches\/(\\d+).*');
 
@@ -25,7 +27,7 @@ const PROFILE_URL_GETTERS = [
     }]
 ];
 
-browser.runtime.onMessage.addListener   (function (msg, _sender, sendResponse) {
+browser.runtime.onMessage.addListener(function (msg, _sender, sendResponse) {
     // If the received message has the expected format...
     if (msg.text === 'get_players') {
         // Call the specified callback, passing

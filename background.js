@@ -1,4 +1,5 @@
 window.browser = (() => window.msBrowser || window.browser || window.chrome)();
+window.browser = wrapAPIs(window.browser);
 
 const OPGG_URL = 'https://euw.op.gg/summoner/userName=';
 
@@ -10,9 +11,6 @@ browser.browserAction.onClicked.addListener(async () => {
     const [currentTab] = await browser.tabs.query({active: true, currentWindow: true});
     const urls  = await browser.tabs.sendMessage(currentTab.id, {text: 'get_players'});
 
-    alert();
-    console.log(urls);
-    
     const names = [];
 
     for (const url of urls) {
