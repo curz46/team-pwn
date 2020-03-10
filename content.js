@@ -6,8 +6,8 @@ const NSE_TEAM_URL    = new RegExp('http(?:s?):\/\/tournaments.nse.gg\/tournamen
 const NSE_MATCHES_URL = new RegExp('http(?:s?):\/\/tournaments.nse.gg\/tournaments\/([A-z0-9-]+)\/matches\/(\\d+).*');
 
 const NUEL_BASE_URL      = 'https://thenuel.com';
-const NUEL_COMPANION_URL = new RegExp('http(?:s?):\/\/thenuel.com\/companion?tournamentId=(\d+)&.*');
-const NUEL_TEAM_URL      = new RegExp('http(?:s?):\/\/thenuel.com\/team\/(\d+).*');
+const NUEL_COMPANION_URL = new RegExp('http(?:s?):\/\/thenuel.com\/companion?tournamentId=(\\d+)&.*');
+const NUEL_TEAM_URL      = new RegExp('http(?:s?):\/\/thenuel.com\/team\/(\\d+).*');
 
 function asArray(nodeList) {
     return [].slice.call(nodeList);
@@ -74,7 +74,7 @@ function fetchNamesFromNSE(urls) {
     });
 }
 
-function extractNamesFromNSE(urls) {
+function extractNamesFromNUEL(urls) {
     return urls.map(url => url.replace(OPGG_URL, '').trim());
 }
 
@@ -83,9 +83,8 @@ browser.runtime.onMessage.addListener((msg, sender, respond) => {
     if (msg.text === 'get_players') {
         // Call the specified callback, passing
         // the web-page's DOM content as argument
-    
         for (const [regex, handler] of PROFILE_URL_GETTERS) {
-            if (regex.test(window.location)) {
+            if (regex.test(window.location.href)) {
                 const urls = handler(document);
                 
                 let names;

@@ -13,6 +13,7 @@ browser.browserAction.onClicked.addListener(async () => {
     try {
         names = await browser.tabs.sendMessage(currentTab.id, {text: 'get_players'});
     } catch (e) {
+        console.log(e);
         return;
     }
     if (! names) {
