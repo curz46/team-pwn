@@ -6,8 +6,7 @@ an NSE/NUEL tournament page.
 ### TODO
 
 - [x] NSE support
-- [ ] NUEL support
-- [ ] Better icon
+- [x] NUEL support
 
 ### Authors
 
